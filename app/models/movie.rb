@@ -5,6 +5,10 @@ class Movie < ActiveRecord::Base
   end
   
   def self.with_ratings(included_ratings)
-    Movie.where(rating: included_ratings)
+    if included_ratings.empty?
+      return Movie
+    else
+      return Movie.where(rating: included_ratings)
+    end
   end
 end

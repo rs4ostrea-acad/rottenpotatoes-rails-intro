@@ -11,24 +11,24 @@
       <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show.include?(rating), class: 'form-check-input' %>
     </div>
   <% end %>
-  <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
+  <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary'%>
 <% end %>
 
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
       <% if @color_title %>
-        <th id='title_header' class="hilite bg-warning"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => @ratings_to_show_hash) %></th>
+        <th id='title_header' class="hilite bg-warning"><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => @ratings_to_show_hash, :home => 1) %></th>
       <% else %>
-        <th id='title_header'><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => @ratings_to_show_hash) %></th>
+        <th id='title_header'><%= link_to "Movie Title", movies_path(:sort => "title", :ratings => @ratings_to_show_hash, :home => 1) %></th>
       <% end %>
       
       <th>Rating</th>
       
       <% if @color_release_date %>
-        <th id='release_date_header' class="hilite bg-warning"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => @ratings_to_show_hash) %></th>
+        <th id='release_date_header' class="hilite bg-warning"><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => @ratings_to_show_hash, :home => 1) %></th>
       <% else %>
-        <th id='release_date_header'><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => @ratings_to_show_hash) %></th>
+        <th id='release_date_header'><%= link_to "Release Date", movies_path(:sort => "release_date", :ratings => @ratings_to_show_hash, :home => 1) %></th>
       <% end %>
       <th>More Info</th>
     </tr>
