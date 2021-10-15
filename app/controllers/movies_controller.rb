@@ -14,8 +14,6 @@ class MoviesController < ApplicationController
       params[:ratings].each_key do |key|
         @ratings_to_show << key
       end
-    elsif
-      @ratings_to_show = @all_ratings
     end
     @movies = Movie.with_ratings(@ratings_to_show)
     @movies = @movies.order(params[:sort])
