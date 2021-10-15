@@ -42,7 +42,7 @@ class MoviesController < ApplicationController
     end
     
     session[:sort] = params[:sort]
-    
+    redirect_to movies_path
   end
 
   def new
