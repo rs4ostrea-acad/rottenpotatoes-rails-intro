@@ -8,45 +8,23 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []
-
-    
     if !params[:ratings].nil?
       params[:ratings].each_key do |key|
         @ratings_to_show << key
       end
-    elsif !session[:ratings].nil? 
-      session[:ratings].each_key do |key| 
-        @ratings_to_show << key 
-      end
-      session.delete(:ratings)
+    elsif
+      @ratings_to_show = @all_ratings
     end
-    
     @movies = Movie.with_ratings(@ratings_to_show)
-    @ratings_to_show_hash = Hash[@ratings_to_show.collect{|r| [r, 1]}]
-
-
-    """
+    @movies = @movies.order(params[:sort])
     if params[:sort] == 'title'
-      @movies = @movies.order(params[:sort])
-      @color_title = true
+      @title_header = "hilite"
     elsif params[:sort] == 'release_date'
-      @movies = @movies.order(params[:sort])
-      @color_release_date = true
-    elsif session[:sort] == 'title'
-      @movies = @movies.order(session[:sort])
-      @color_title = true
-    elsif session[:sort] == 'release_date'
-      @movies = @movies.order(session[:sort])
-      @color_release_date = true
+      @release_date_header = "hilite"
     end
-    """
-    
-    #session[:ratings] = @ratings_to_show_hash
-    #session[:sort] = params[:sort]
-    #session.clear  
+    @ratings_to_show_hash = Hash[@ratings_to_show.collect{|r| [r, 1]}]
   end
 
   def new
