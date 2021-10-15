@@ -33,10 +33,13 @@ class MoviesController < ApplicationController
     elsif params[:sort] == 'release_date'
       @color_release_date = true
       @movies = @movies.order(params[:sort])
+    elsif session[:sort] == 'title'
+      @color_title = true
+      @movies = @movies.order(session[:sort])
+    elsif session[:sort] == 'release_date'
+      @color_release_date = true
+      @movies = @movies.order(session[:sort])
     end
-    
-    
-    
     
   end
 
