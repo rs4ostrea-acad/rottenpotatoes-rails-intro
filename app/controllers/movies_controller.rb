@@ -35,15 +35,13 @@ class MoviesController < ApplicationController
     elsif params[:sort] == 'release_date'
       @movies = @movies.order(params[:sort])
       @color_release_date = true
-    end  
-    
-    #elsif session[:sort] == 'title'
-      #@movies = @movies.order(session[:sort])
-      #@color_title = true
-    #elsif session[:sort] == 'release_date'
-      #@movies = @movies.order(session[:sort])
-      #@color_release_date = true
-    #end
+    elsif session[:sort] == 'title'
+      @movies = @movies.order(session[:sort])
+      @color_title = true
+    elsif session[:sort] == 'release_date'
+      @movies = @movies.order(session[:sort])
+      @color_release_date = true
+    end
     
     session[:ratings] = @ratings_to_show_hash
     session[:sort] = params[:sort]
