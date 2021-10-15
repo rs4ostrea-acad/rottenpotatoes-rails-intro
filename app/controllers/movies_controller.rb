@@ -41,6 +41,8 @@ class MoviesController < ApplicationController
       @movies = @movies.order(session[:sort])
     end
     
+    session[:sort] = params[:sort]
+    
   end
 
   def new
