@@ -18,9 +18,9 @@ class MoviesController < ApplicationController
     @movies = Movie.with_ratings(@ratings_to_show)
     @movies = @movies.order(params[:sort])
     if params[:sort] == 'title'
-      @title_header = "hilite"
+      @color_title = true
     elsif params[:sort] == 'release_date'
-      @release_date_header = "hilite"
+      @color_release_date = true
     end
     @ratings_to_show_hash = Hash[@ratings_to_show.collect{|r| [r, 1]}]
   end
